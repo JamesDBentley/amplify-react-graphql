@@ -1,14 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState } from 'react';
+import GolfEventList from './GolfEventList';
+import AddGolfEventForm from './AddGolfEventForm';
 
 function App() {
+  // State to manage golf events
+  const [events, setEvents] = useState([]);
+
+  // Function to add a new golf event to the list
+  const addEvent = (newEvent) => {
+    setEvents([...events, newEvent]);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Hello from V2</h1>
-      </header>
+      <h1>Golf Charity App</h1>
+      {/* Component for adding a new golf event */}
+      <AddGolfEventForm onAddEvent={addEvent} />
+      {/* Component to display the list of golf events */}
+      <GolfEventList events={events} />
     </div>
   );
 }
