@@ -1,40 +1,34 @@
-// AddGolfEventForm.js
-import React, { useState } from 'react';
 
-function AddGolfEventForm({ onAddEvent }) {
-  // State to manage form input values
-  const [name, setName] = useState('');
-  const [date, setDate] = useState('');
 
-  // Function to handle adding a new golf event
-  const handleAddEvent = () => {
-    if (name && date) {
-      const newEvent = { name, date };
-      // Call the parent component's function to add the new event
-      onAddEvent(newEvent);
-      // Clear the form inputs after adding the event
-      setName('');
-      setDate('');
-    }
+// GolfEventList.js
+import React from 'react';
+
+function GolfEventList({ events }) {
+  const listItemStyle = {
+    marginBottom: '10px',
+    padding: '8px',
+    border: '1px solid #ddd',
+    backgroundColor: '#f9f9f9',
   };
 
   return (
     <div>
-      <h2>Add Golf Event</h2>
-      <div>
-        {/* Input for the golf event name */}
-        <label>Name:</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-      </div>
-      <div>
-        {/* Input for the golf event date */}
-        <label>Date:</label>
-        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-      </div>
-      {/* Button to trigger adding the new golf event */}
-      <button onClick={handleAddEvent}>Add Event</button>
+      <h2 style={styles.heading}>Golf Events</h2>
+      <ul style={{ listStyleType: 'none', padding: '0' }}>
+        {events.map((event, index) => (
+          <li key={index} style={listItemStyle}>
+            {event.name} - {event.date}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
 
-export default AddGolfEventForm;
+const styles = {
+  heading: {
+    color: '#555',
+  },
+};
+
+export default GolfEventList;

@@ -4,23 +4,30 @@ import GolfEventList from './GolfEventList';
 import AddGolfEventForm from './AddGolfEventForm';
 
 function App() {
-  // State to manage golf events
   const [events, setEvents] = useState([]);
 
-  // Function to add a new golf event to the list
   const addEvent = (newEvent) => {
     setEvents([...events, newEvent]);
   };
 
   return (
-    <div className="App">
-      <h1>Golf Charity App</h1>
-      {/* Component for adding a new golf event */}
+    <div style={styles.appContainer}>
+      <h1 style={styles.heading}>Golf Charity App</h1>
       <AddGolfEventForm onAddEvent={addEvent} />
-      {/* Component to display the list of golf events */}
       <GolfEventList events={events} />
     </div>
   );
 }
+
+const styles = {
+  appContainer: {
+    fontFamily: 'Arial, sans-serif',
+    textAlign: 'center',
+    margin: '20px',
+  },
+  heading: {
+    color: '#333',
+  },
+};
 
 export default App;

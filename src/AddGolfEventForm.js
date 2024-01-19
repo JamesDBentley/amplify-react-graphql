@@ -2,17 +2,13 @@
 import React, { useState } from 'react';
 
 function AddGolfEventForm({ onAddEvent }) {
-  // State to manage form input values
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
 
-  // Function to handle adding a new golf event
   const handleAddEvent = () => {
     if (name && date) {
       const newEvent = { name, date };
-      // Call the parent component's function to add the new event
       onAddEvent(newEvent);
-      // Clear the form inputs after adding the event
       setName('');
       setDate('');
     }
@@ -20,21 +16,53 @@ function AddGolfEventForm({ onAddEvent }) {
 
   return (
     <div>
-      <h2>Add Golf Event</h2>
+      <h2 style={styles.heading}>Add Golf Event</h2>
       <div>
-        {/* Input for the golf event name */}
-        <label>Name:</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+        <label style={styles.label}>Name:</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          style={styles.input}
+        />
       </div>
       <div>
-        {/* Input for the golf event date */}
-        <label>Date:</label>
-        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+        <label style={styles.label}>Date:</label>
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          style={styles.input}
+        />
       </div>
-      {/* Button to trigger adding the new golf event */}
-      <button onClick={handleAddEvent}>Add Event</button>
+      <button onClick={handleAddEvent} style={styles.button}>
+        Add Event
+      </button>
     </div>
   );
 }
+
+const styles = {
+  heading: {
+    color: '#555',
+  },
+  label: {
+    display: 'block',
+    marginBottom: '5px',
+  },
+  input: {
+    width: '100%',
+    padding: '8px',
+    marginBottom: '10px',
+  },
+  button: {
+    backgroundColor: '#4caf50',
+    color: 'white',
+    padding: '10px 15px',
+    border: 'none',
+    cursor: 'pointer',
+    fontSize: '16px',
+  },
+};
 
 export default AddGolfEventForm;
